@@ -54,7 +54,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public Flux<ProductDto> findInRange(Double min, Double max) {
         return productRepository.findByPriceBetween(min, max)
                 .map(productMapper::toDto);
